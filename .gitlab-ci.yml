@@ -1,0 +1,33 @@
+image: ruby:2.5
+
+services:
+  - postgres:9.6
+
+variables:
+  RAILS_ENV: test
+  POSTGRES_DB: hime-server
+  DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
+
+stages:
+  - verify
+  - test
+
+cache:
+  paths:
+    - vendor/bundle
+
+rubocop:
+  stage: verify
+  before_script:
+    - gem install rubocop -v 0.56.0
+  script:
+    - rubocop
+
+brakeman:
+  stage: verify
+  before_script:
+    - export LANG=C.UTF-8
+    - export LC_ALL=C.UTF-8
+    - gem install brakeman
+  script:
+    - brakeman
