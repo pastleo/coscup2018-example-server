@@ -3,6 +3,7 @@ image: ruby:2.5
 variables:
   RAILS_ENV: test
   POSTGRES_DB: hime-server
+  NODE_VERSION: 8.0.0
   DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
 
 stages:
@@ -32,6 +33,7 @@ brakeman:
 rspec:
   stage: test
   before_script:
+    - curl -SLO https://nodejs.org/dist/v$NODE_VERSION/node-v${NODE_VERSION}-linux-x64.tar.xz && tar -xJf node-v${NODE_VERSION}-linux-x64.tar.xz -C /usr/local --strip-components=1;
     - bundle install --without development --path vendor/bundle
   services:
     - postgres:9.6
