@@ -30,8 +30,8 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
 
-  gem 'faker'
   gem 'factory_bot'
+  gem 'faker'
 
   gem 'shoulda'
   gem 'shoulda-matchers'

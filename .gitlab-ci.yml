@@ -1,8 +1,5 @@
 image: ruby:2.5
 
-services:
-  - postgres:9.6
-
 variables:
   RAILS_ENV: test
   POSTGRES_DB: hime-server
@@ -31,3 +28,13 @@ brakeman:
     - gem install brakeman
   script:
     - brakeman
+
+rspec:
+  stage: test
+  before_script:
+    - bundle install --without development --path vendor/bundle
+  services:
+    - postgres:9.6
+  script:
+    - bundle exec rake db:migrate
+    - bundle exec rspec
