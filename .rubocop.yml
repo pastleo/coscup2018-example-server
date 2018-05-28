@@ -1,0 +1,29 @@
+AllCops:
+  TargetRubyVersion: 2.5
+  DisplayCopNames: true
+  Include:
+    - Rakefile
+    - config.ru
+    - config/initializer/*
+  Exclude:
+    - db/**/*
+    - bin/*
+    - config/**/*
+    - vendor/ruby/**/*
+    - vendor/bundle/**/*
+    - node_modules/**/*
+Rails:
+  Enabled: true
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*_spec.rb
+    - spec/support/*
+    - Guardfile
+Naming/FileName:
+  Exclude:
+    - Gemfile
+    - Guardfile
+    - Capfile
+    - vendor/paper-kit
+Style/Documentation:
+  Enabled: false
