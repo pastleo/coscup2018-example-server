@@ -13,7 +13,7 @@ module Api
 
         render json: {
           username: user.username,
-          token: token.token
+          access_token: token.token
         }
       end
 
