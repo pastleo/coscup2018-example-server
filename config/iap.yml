@@ -1,0 +1,17 @@
+default: &default
+  google_play:
+    public_key: <%= ENV['GOOGLE_PLAY_PUBLIC_KEY'] %>
+    products:
+      stone_50:
+        quantity: 1
+  itunes:
+    products:
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
