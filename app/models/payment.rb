@@ -1,5 +1,12 @@
 # frozen_string_literal: true
 
 class Payment < ApplicationRecord
+  class ReceiptInvalid < StandardError; end
+
   belongs_to :user
+
+  enum store: {
+    google_play: 0,
+    itunes: 1
+  }
 end

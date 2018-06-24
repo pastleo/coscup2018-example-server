@@ -7,7 +7,8 @@ module IAP
   class GooglePlay
     class << self
       def verify(signature, receipt)
-        self.class.new.verify(signature, receipt)
+        self.new(Config.google_play.public_key)
+            .verify(signature, receipt)
       end
     end
 

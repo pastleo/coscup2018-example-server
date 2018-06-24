@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_14_024742) do
+ActiveRecord::Schema.define(version: 2018_06_24_073813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,14 +63,14 @@ ActiveRecord::Schema.define(version: 2018_06_14_024742) do
     t.text "receipt", null: false
     t.datetime "purchased_at", null: false
     t.string "currency", null: false
-    t.integer "price", null: false
+    t.string "price", null: false
     t.integer "quantity", null: false
-    t.boolean "valid", default: false, null: false
+    t.boolean "verified", default: false, null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["transaction_id"], name: "index_payments_on_transaction_id", unique: true
-    t.index ["user_id", "valid", "purchased_at"], name: "payment_orders"
+    t.index ["user_id", "verified", "purchased_at"], name: "payment_orders"
     t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
