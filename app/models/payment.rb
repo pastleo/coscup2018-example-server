@@ -9,4 +9,6 @@ class Payment < ApplicationRecord
     google_play: 0,
     itunes: 1
   }
+
+  # TODO: Reward user stone after checked payment
 end

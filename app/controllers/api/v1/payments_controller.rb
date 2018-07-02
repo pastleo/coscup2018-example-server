@@ -4,13 +4,19 @@ module Api
   module V1
     class PaymentsController < Api::V1::BaseController
       def create
-        Payment
-          .const_get(params[:store].classify)
-          .check(current_user, order_params)
-        return head 204
+        store.check(current_user, order_params)
+        head 204
       end
 
       private
+
+      def store
+        case params[:store]
+        when 'google_play' then Payment::GooglePlay
+        when 'itunes' then Payment::Itunes
+        else Payment
+        end
+      end
 
       def order_params
         case params[:store]
