@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_31_160710) do
+ActiveRecord::Schema.define(version: 2018_06_24_073813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,25 @@ ActiveRecord::Schema.define(version: 2018_05_31_160710) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "store", null: false
+    t.string "product_id", null: false
+    t.string "transaction_id", null: false
+    t.text "receipt", null: false
+    t.datetime "purchased_at", null: false
+    t.string "currency", null: false
+    t.string "price", null: false
+    t.integer "quantity", null: false
+    t.boolean "verified", default: false, null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["transaction_id"], name: "index_payments_on_transaction_id", unique: true
+    t.index ["user_id", "verified", "purchased_at"], name: "payment_orders"
+    t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: ""
     t.string "encrypted_password", default: "", null: false
@@ -69,6 +88,7 @@ ActiveRecord::Schema.define(version: 2018_05_31_160710) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "username", null: false
+    t.integer "stone", default: 0
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end
@@ -77,4 +97,5 @@ ActiveRecord::Schema.define(version: 2018_05_31_160710) do
   add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
+  add_foreign_key "payments", "users"
 end

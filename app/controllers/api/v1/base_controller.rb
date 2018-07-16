@@ -6,7 +6,9 @@ module Api
       include ActionController::MimeResponds
       include Doorkeeper::Rails::Helpers
 
-      ActionController::API.without_modules('Renders:All', :Redirecting).each do |left|
+      ActionController::API.without_modules(
+        'Renders:All', :Redirecting
+      ).each do |left|
         include left
       end
 
@@ -22,7 +24,11 @@ module Api
           error: {
             message: e.message
           }
-        }, status: 500
+        }, status: :internal_server_error
+      end
+
+      def current_user
+        User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
       end
     end
   end
