@@ -10,10 +10,14 @@ Rails.application.routes.draw do
   namespace :api, path: '/', constraints: SubdomainConstraint.new('api') do
     namespace :v1 do
       resource :version, only: [:show]
+
       resources :users, only: [:create]
+
       scope ':store', store: /#{Payment.stores.keys.join('|')}/  do
         resources :payments, only: [:create]
       end
+
+      resources :chapters, only: [:index]
     end
   end
 end
