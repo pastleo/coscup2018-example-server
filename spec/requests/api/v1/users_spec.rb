@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "Api::V1::Users", type: :request do
+  before :each do
+    host! 'api.example.com'
+  end
+
   describe "POST /api/v1/users" do
     before do
       post api_v1_users_path, params: {
