@@ -5,7 +5,7 @@ RSpec.describe "Api::V1::Users", type: :request do
     host! 'api.example.com'
   end
 
-  describe "POST /api/v1/users" do
+  describe "POST /v1/users" do
     before do
       post api_v1_users_path, params: {
         username: Faker::Internet.user_name,
@@ -19,7 +19,6 @@ RSpec.describe "Api::V1::Users", type: :request do
 
     it "receive the access_token" do
       raw = JSON.parse(response.body)
-      p raw
       expect(raw['access_token']).not_to be_nil
     end
   end
