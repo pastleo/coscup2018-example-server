@@ -1,24 +1,34 @@
-# README
+Hime Server
+===
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Requirement
 
-Things you may want to cover:
+* Ruby 2.5.1
+* PostgreSQL
 
-* Ruby version
+## Development
 
-* System dependencies
+For client development, we need to modify `/etc/hosts` to define the hostname.
 
-* Configuration
+```
+127.0.0.1 api.hime.lcoal
+127.0.0.1 hime.local
+```
 
-* Database creation
+And run the server using port `3000` to ensure the client can access it.
 
-* Database initialization
+## Deployment
 
-* How to run the test suite
+### Server Environment
 
-* Services (job queues, cache servers, search engines, etc.)
+* Centos7
+* Nginx with Passenger
+* Ruby 2.5.1
+* PostgreSQL
 
-* Deployment instructions
+### Environment Variables
 
-* ...
+#### TLD_LENGTH
+
+The Rails default set it to 1, so the `request.subdomain` will return `api` if host is `api.basaltic.tw`
+But this project is using `api.hime.basaltic.tw` as hostname, we need set it to 2.
