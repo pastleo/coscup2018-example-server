@@ -17,7 +17,9 @@ Rails.application.routes.draw do
         resources :payments, only: [:create]
       end
 
-      resources :chapters, only: [:index]
+      resources :chapters, only: [:index] do
+        resources :stories, only: [:index]
+      end
     end
   end
 end
