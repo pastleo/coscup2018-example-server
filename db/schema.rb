@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_24_073813) do
+ActiveRecord::Schema.define(version: 2018_07_16_162537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chapters", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "oauth_access_grants", force: :cascade do |t|
     t.integer "resource_owner_id", null: false
@@ -74,6 +80,14 @@ ActiveRecord::Schema.define(version: 2018_06_24_073813) do
     t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
+  create_table "stories", force: :cascade do |t|
+    t.string "name"
+    t.bigint "chapter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chapter_id"], name: "index_stories_on_chapter_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: ""
     t.string "encrypted_password", default: "", null: false
@@ -98,4 +112,5 @@ ActiveRecord::Schema.define(version: 2018_06_24_073813) do
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
   add_foreign_key "payments", "users"
+  add_foreign_key "stories", "chapters"
 end
