@@ -17,6 +17,12 @@ For client development, we need to modify `/etc/hosts` to define the hostname.
 
 And run the server using port `3000` to ensure the client can access it.
 
+## Release
+
+Before release new version, please update `config/initializers/version.rb` and change it to latest server version.
+
+> TODO: Build Version should saved inside database and provide latest assets bundle for player.
+
 ## Deployment
 
 ### Server Environment
