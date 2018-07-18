@@ -89,6 +89,9 @@ GEM
     execjs (2.7.0)
     factory_bot (4.10.0)
       activesupport (>= 3.0.0)
+    factory_bot_rails (4.10.0)
+      factory_bot (~> 4.10.0)
+      railties (>= 3.0.0)
     faker (1.8.7)
       i18n (>= 0.7)
     ffi (1.9.23)
@@ -272,10 +275,11 @@ DEPENDENCIES
   byebug
   capistrano-rails
   devise
-  doorkeeper
+  doorkeeper (~> 4.3)
   doorkeeper-jwt
   dotenv-rails
-  factory_bot
+  factory_bot (~> 4.0)
+  factory_bot_rails (~> 4.0)
   faker
   fuubar
   listen (>= 3.0.5, < 3.2)
