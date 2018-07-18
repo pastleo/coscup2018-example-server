@@ -1,4 +1,4 @@
-Hime Server
+Hime Server [![pipeline status](https://git.frost.tw/BasalticStudio/Hime/hime-server/badges/master/pipeline.svg)](https://git.frost.tw/BasalticStudio/Hime/hime-server/commits/master) [![coverage report](https://git.frost.tw/BasalticStudio/Hime/hime-server/badges/master/coverage.svg)](https://git.frost.tw/BasalticStudio/Hime/hime-server/commits/master)
 ===
 
 ## Requirement
