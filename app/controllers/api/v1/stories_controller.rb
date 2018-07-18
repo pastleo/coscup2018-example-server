@@ -6,7 +6,7 @@ module Api
       before_action -> { @chapter = Chapter.find(params[:chapter_id]) }
 
       def index
-        render json: @chapter.stories.as_json(only: %i[id name])
+        render json: @chapter.stories.as_json(only: %i[id name order])
       end
 
       def start

@@ -17,7 +17,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # User
 gem 'devise'
-gem 'doorkeeper'
+gem 'doorkeeper', "~> 4.3"
 gem 'doorkeeper-jwt'
 
 # Utilities
@@ -32,7 +32,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'simplecov', require: false
 
-  gem 'factory_bot'
+  gem 'factory_bot', '~> 4.0'
+  gem 'factory_bot_rails', '~> 4.0'
   gem 'faker'
 
   gem 'shoulda'
