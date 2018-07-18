@@ -19,7 +19,7 @@ RSpec.describe "Api::V1::Chapter", type: :request do
 
     it "returns available chapters" do
       json = JSON.parse(response.body)
-      expect(json).to match_array(Chapter.all.as_json(only: %i[id name]))
+      expect(json).to match_array(Chapter.all.as_json(only: %i[id name order]))
     end
   end
 end
