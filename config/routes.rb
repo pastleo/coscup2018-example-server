@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   use_doorkeeper
   devise_for :users
 
+  concern :advanceable do
+    post :start
+  end
+
   # TODO: Add subdomain constraint for production
   namespace :api, path: '/', constraints: SubdomainConstraint.new('api') do
     namespace :v1 do
@@ -18,7 +22,7 @@ Rails.application.routes.draw do
       end
 
       resources :chapters, only: [:index] do
-        resources :stories, only: [:index]
+        resources :stories, only: [:index], concerns: :advanceable
       end
     end
   end

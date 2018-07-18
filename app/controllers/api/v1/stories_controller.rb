@@ -8,6 +8,10 @@ module Api
       def index
         render json: @chapter.stories.as_json(only: %i[id name])
       end
+
+      def start
+        # TODO: Implement players's mission to start
+      end
     end
   end
 end
