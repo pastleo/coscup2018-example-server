@@ -29,12 +29,16 @@ group :development, :test do
 
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'simplecov', require: false
 
   gem 'factory_bot'
   gem 'faker'
 
   gem 'shoulda'
   gem 'shoulda-matchers'
+
+  gem 'brakeman', require: false
+  gem 'rubocop', '0.56.0', require: false
 end
 
 group :development do
@@ -44,14 +48,14 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  gem 'capistrano-rails'
+  gem 'capistrano-rails', require: false
 
-  gem 'brakeman'
-  gem 'overcommit'
-  gem 'rubocop', '0.56.0'
+  gem 'overcommit', require: false
 
   gem 'dotenv-rails'
   gem 'pry-rails'
+
+  gem 'fuubar', require: false
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
