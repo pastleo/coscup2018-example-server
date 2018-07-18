@@ -27,6 +27,7 @@ gem 'settingslogic'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 
+  gem 'fuubar', require: false
   gem 'rspec'
   gem 'rspec-rails'
   gem 'simplecov', require: false
@@ -54,8 +55,6 @@ group :development do
 
   gem 'dotenv-rails'
   gem 'pry-rails'
-
-  gem 'fuubar', require: false
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
