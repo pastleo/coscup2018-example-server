@@ -35,7 +35,7 @@ group :development, :test do
   gem 'faker'
 
   gem 'shoulda'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', '~> 3.1'
 
   gem 'brakeman', require: false
   gem 'rubocop', '0.56.0', require: false
