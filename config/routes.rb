@@ -6,23 +6,28 @@ Rails.application.routes.draw do
   use_doorkeeper
   devise_for :users
 
-  concern :advanceable do
-    post :start
+  concern :can_start do
+    post :start, on: :member
   end
 
   # TODO: Add subdomain constraint for production
-  namespace :api, path: '/', constraints: SubdomainConstraint.new('api') do
+  namespace :api, path: '/', defaults: { format: :json }, constraints: SubdomainConstraint.new('api') do
     namespace :v1 do
       resource :version, only: [:show]
 
       resources :users, only: [:create]
+
+      namespace :mission do
+        post :next
+        delete :cancel
+      end
 
       scope ':store', store: /#{Payment.stores.keys.join('|')}/  do
         resources :payments, only: [:create]
       end
 
       resources :chapters, only: [:index] do
-        resources :stories, only: [:index], concerns: :advanceable
+        resources :stories, only: [:index], concerns: :can_start
       end
     end
   end
