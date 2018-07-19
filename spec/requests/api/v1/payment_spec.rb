@@ -17,7 +17,9 @@ RSpec.describe 'Api::V1::Payment', type: :request do
     describe 'POST /v1/google_play/payment' do
       before do
         allow(ENV).to receive(:[])
-        allow(ENV).to receive(:[]).with('GOOGLE_PLAY_PUBLIC_KEY').and_return(Base64.encode64(public_key).gsub("\n", ''))
+        allow(ENV).to receive(:[])
+          .with('GOOGLE_PLAY_PUBLIC_KEY')
+          .and_return(Base64.encode64(public_key).delete("\n"))
 
         post api_v1_payments_path(store: :google_play), params: {
           access_token: token.token,
