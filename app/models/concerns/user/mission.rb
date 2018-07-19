@@ -10,6 +10,10 @@ class User < ApplicationRecord
         missions.create(mission: mission)
         mission.dialogs.first
       end
+
+      def current_mission
+        missions.incomplete.first
+      end
     end
   end
 end

@@ -17,9 +17,9 @@ Rails.application.routes.draw do
 
       resources :users, only: [:create]
 
-      namespace :mission do
+      namespace :missions do
         post :next
-        delete :cancel
+        post :cancel
       end
 
       scope ':store', store: /#{Payment.stores.keys.join('|')}/  do

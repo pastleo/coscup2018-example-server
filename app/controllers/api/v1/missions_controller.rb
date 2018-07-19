@@ -8,7 +8,11 @@ module Api
       end
 
       def cancel
-        # TODO
+        # TODO: Raise error when no incomplete mission found
+        render json: current_user
+          .current_mission
+          &.cancel
+          &.as_json(only: %i[id name])
       end
     end
   end

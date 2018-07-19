@@ -6,7 +6,7 @@ FactoryBot.define do
     completed false
     progress 0
 
-    trait :story do
+    trait :is_story do
       mission { create(:story) }
     end
   end
