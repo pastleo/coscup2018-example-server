@@ -17,6 +17,28 @@ For client development, we need to modify `/etc/hosts` to define the hostname.
 
 And run the server using port `3000` to ensure the client can access it.
 
+## Testing
+
+### Generate Google Play IAP Receipt
+
+Generate RSA Public/Private Key
+
+```bash
+openssl genpkey -algorithm RSA -out spec/fixtures/files/payment/google_play/private.key -pkeyopt rsa_keygen_bits:2048
+openssl rsa -pubout -outform der -in spec/fixtures/files/payment/google_play/private.key -out spec/fixtures/files/payment/google_play/public.der
+```
+
+How to save receipt signature
+
+```ruby
+require 'openssl'
+
+json = File.read(receipt_json_path)
+key = OpenSSL::PKey::RSA.new(private_key)
+sign = key.sign(OpenSSL::Digest::SHA1.new, json).gsub(/(\r\n|\r|\n)/, '')
+File.write(path, Base64.encode64(sign))
+```
+
 ## Release
 
 Before release new version, please update `config/initializers/version.rb` and change it to latest server version.
