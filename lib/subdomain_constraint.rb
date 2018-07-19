@@ -8,7 +8,7 @@ class SubdomainConstraint
   end
 
   def matches?(request)
-    return unless request.subdomain.present?
+    return if request.subdomain.blank?
     request.subdomain((ENV['TLD_LENGTH'] || 1).to_i) == prefix
   end
 end

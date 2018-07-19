@@ -1,11 +1,6 @@
-# TODO: Fix rubocop not cover all files
 AllCops:
   TargetRubyVersion: 2.5
   DisplayCopNames: true
-  Include:
-    - Rakefile
-    - config.ru
-    - config/initializer/*
   Exclude:
     - db/**/*
     - bin/*

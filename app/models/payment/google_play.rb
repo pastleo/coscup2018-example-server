@@ -6,29 +6,31 @@ class Payment
       def check(user, order_params)
         receipt = JSON.parse(order_params[:receipt])
         order = find_or_create_by!(transaction_id: receipt['orderId']) do |o|
-          o.product_id = receipt['productId']
-          o.receipt = order_params[:receipt]
-          o.purchased_at = Time.at(receipt['purchaseTime'].to_i / 1000).to_datetime
-          o.user = user
-          o.currency = order_params[:currency]
-          o.price = order_params[:price]
-          o.quantity = order_params[:quantity]
+          setup(user, o, receipt, order_params)
         end
 
         return if already_checked?(order)
         order.verify_receipt!(order_params[:signature])
       end
 
+      def setup(user, order, receipt, params)
+        order.product_id = receipt['productId']
+        order.receipt = params[:receipt]
+        order.purchased_at = timestamp_to_datetime(receipt['purchaseTime'])
+        order.user = user
+        order.currency = params[:currency]
+        order.price = params[:price]
+        order.quantity = params[:quantity]
+      end
+
+      def timestamp_to_datetime(time)
+        Time.zone.at(time.to_i / 1000).to_datetime
+      end
+
       def already_checked?(order)
-        if order.checked?
-          if order.verified?
-            return true
-          else
-            raise ReceiptInvalid
-          end
-        else
-          false
-        end
+        return unless order.checked?
+        return true if order.verified?
+        raise ReceiptInvalid
       end
     end
 
@@ -36,11 +38,8 @@ class Payment
 
     def verify_receipt!(signature)
       transaction do
-        if valid_receipt?(signature)
-          save_valid_receipt!
-        else
-          raise ReceiptInvalid
-        end
+        raise ReceiptInvalid unless valid_receipt?(signature)
+        save_valid_receipt!
       end
     rescue ReceiptInvalid
       save_invalid_receipt!
