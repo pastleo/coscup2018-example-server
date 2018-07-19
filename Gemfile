@@ -17,7 +17,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # User
 gem 'devise'
-gem 'doorkeeper', "~> 4.3"
+gem 'doorkeeper', '~> 4.3'
 gem 'doorkeeper-jwt'
 
 # Utilities
