@@ -6,8 +6,9 @@ class User < ApplicationRecord
 
     included do
       def start_mission(mission)
+        # TODO: Block user start missing if have incomplete mission
         missions.create(mission: mission)
-        mission
+        mission.dialogs.first
       end
     end
   end

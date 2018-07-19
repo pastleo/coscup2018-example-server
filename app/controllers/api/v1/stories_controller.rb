@@ -11,7 +11,10 @@ module Api
       end
 
       def start
-        render json: current_user.start_mission(@story)
+        # TODO: Add ActiveModel::Serializer
+        render json: current_user
+          .start_mission(@story)
+          .as_json(only: %i[script])
       end
 
       private
