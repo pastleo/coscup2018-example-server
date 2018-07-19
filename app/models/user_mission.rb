@@ -10,4 +10,25 @@ class UserMission < ApplicationRecord
     update(canceled_at: Time.zone.now)
     mission
   end
+
+  def next
+    dialog = next_dialog
+
+    # TODO: Return correct complete response
+    transaction do
+      if dialog.present?
+        increment(:progress).save
+        dialog
+      else
+        update(completed: true)
+        self
+      end
+    end
+  end
+
+  def next_dialog
+    mission
+      .dialogs
+      .find_by(order: (progress + 1)..Float::INFINITY)
+  end
 end

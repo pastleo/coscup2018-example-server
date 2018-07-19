@@ -10,6 +10,7 @@ RSpec.describe 'Api::V1::Stories', type: :request do
   let!(:token) { create(:access_token) }
   let!(:chapter) { create(:chapter) }
   let!(:story) { create(:story, chapter: chapter) }
+  let!(:dialogs) { create_list(:dialog, 2, mission: story) }
 
   let(:params) { { access_token: token.token } }
 
