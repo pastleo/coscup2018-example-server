@@ -8,7 +8,11 @@ class User < ApplicationRecord
 
   has_many :payments, dependent: :destroy
 
+  has_many :missions, dependent: :destroy, class_name: 'UserMission'
+
   validates :username, uniqueness: true
+
+  include User::Mission
 
   private
 

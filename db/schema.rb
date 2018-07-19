@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_18_022850) do
+ActiveRecord::Schema.define(version: 2018_07_19_153202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,18 @@ ActiveRecord::Schema.define(version: 2018_07_18_022850) do
     t.datetime "updated_at", null: false
     t.integer "order", default: 0, null: false
     t.index ["chapter_id"], name: "index_stories_on_chapter_id"
+  end
+
+  create_table "user_missions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "mission_id"
+    t.string "mission_type"
+    t.boolean "completed", default: false, null: false
+    t.integer "progress", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "canceled_at"
+    t.index ["user_id"], name: "index_user_missions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
