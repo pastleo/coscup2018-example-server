@@ -20,6 +20,9 @@ gem 'devise'
 gem 'doorkeeper', '~> 4.3'
 gem 'doorkeeper-jwt'
 
+# API
+gem 'active_model_serializers', '~> 0.10'
+
 # Utilities
 gem 'oj'
 gem 'settingslogic'
