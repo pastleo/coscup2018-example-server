@@ -37,9 +37,8 @@ RSpec.describe 'Api::V1::Stories', type: :request do
 
     it 'returns current started story' do
       json = JSON.parse(response.body)
-      expect(json).to match(
-        story.dialogs.first.as_json(only: %i[script])
-      )
+      hash = JSON.parse(serialized_json(story.dialogs.first))
+      expect(json).to match(hash)
     end
   end
 end
