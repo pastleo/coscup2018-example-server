@@ -7,7 +7,6 @@ module Api
         render json: current_user
           .current_mission
           .next
-          .as_json(only: %i[script])
       end
 
       def cancel
@@ -15,7 +14,6 @@ module Api
         render json: current_user
           .current_mission
           &.cancel
-          &.as_json(only: %i[id name])
       end
     end
   end

@@ -23,9 +23,8 @@ RSpec.describe 'Api::V1::Stories', type: :request do
 
     it 'returns available chapters' do
       json = JSON.parse(response.body)
-      expect(json).to match_array(
-        chapter.stories.as_json(only: %i[id name order])
-      )
+      hash = JSON.parse(serialized_json(chapter.stories))
+      expect(json).to match_array(hash)
     end
   end
 
@@ -38,9 +37,8 @@ RSpec.describe 'Api::V1::Stories', type: :request do
 
     it 'returns current started story' do
       json = JSON.parse(response.body)
-      expect(json).to match(
-        story.dialogs.first.as_json(only: %i[script])
-      )
+      hash = JSON.parse(serialized_json(story.dialogs.first))
+      expect(json).to match(hash)
     end
   end
 end

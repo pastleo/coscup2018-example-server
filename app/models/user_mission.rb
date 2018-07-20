@@ -7,8 +7,8 @@ class UserMission < ApplicationRecord
   scope :incomplete, -> { where(canceled_at: nil, completed: false) }
 
   def cancel
-    update(canceled_at: Time.zone.now)
-    mission
+    update!(canceled_at: Time.zone.now)
+    self
   end
 
   def next

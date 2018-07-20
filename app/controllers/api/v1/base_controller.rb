@@ -12,6 +12,8 @@ module Api
         include left
       end
 
+      include ::ActionController::Serialization
+
       before_action :doorkeeper_authorize!
 
       # TODO: Implement Error Handler

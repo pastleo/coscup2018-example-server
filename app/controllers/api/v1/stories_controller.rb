@@ -7,14 +7,12 @@ module Api
       before_action :find_story, only: :start
 
       def index
-        render json: @chapter.stories.as_json(only: %i[id name order])
+        render json: @chapter.stories
       end
 
       def start
-        # TODO: Add ActiveModel::Serializer
         render json: current_user
           .start_mission(@story)
-          .as_json(only: %i[script])
       end
 
       private

@@ -4,7 +4,7 @@ module Api
   module V1
     class ChaptersController < Api::V1::BaseController
       def index
-        render json: Chapter.all.as_json(only: %i[id name order])
+        render json: Chapter.all
       end
     end
   end
