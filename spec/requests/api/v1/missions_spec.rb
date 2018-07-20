@@ -15,9 +15,11 @@ RSpec.describe 'Api::V1::Missions', type: :request do
 
   describe 'POST /v1/missions/cancel' do
     context 'in progress' do
+      let!(:mission) { create(:user_mission, :is_story, user: user) }
       let!(:dialogs) { create_list(:dialog, 2, mission: mission.mission) }
 
       before do
+        mission.update(progress: dialogs.first.order)
         post api_v1_missions_next_path, params: params
       end
 
@@ -33,7 +35,11 @@ RSpec.describe 'Api::V1::Missions', type: :request do
 
     # TODO: Add database rewind to reset result
     context 'completed' do
+      let!(:mission) { create(:user_mission, :is_story, user: user) }
+      let!(:dialogs) { create_list(:dialog, 2, mission: mission.mission) }
+
       before do
+        mission.update(progress: dialogs.last.order)
         post api_v1_missions_next_path, params: params
       end
 

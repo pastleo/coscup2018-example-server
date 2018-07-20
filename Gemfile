@@ -27,6 +27,7 @@ gem 'settingslogic'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 
+  gem 'database_rewinder'
   gem 'fuubar', require: false
   gem 'rspec'
   gem 'rspec-rails'

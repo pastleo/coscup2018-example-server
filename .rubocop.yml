@@ -10,6 +10,9 @@ AllCops:
     - node_modules/**/*
 Rails:
   Enabled: true
+Metrics/LineLength:
+  Exclude:
+    - spec/**/*_spec.rb
 Metrics/BlockLength:
   Exclude:
     - spec/**/*_spec.rb
