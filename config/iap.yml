@@ -3,7 +3,7 @@ default: &default
     public_key: <%= ENV['GOOGLE_PLAY_PUBLIC_KEY'] %>
     products:
       stone_50:
-        quantity: 1
+        quantity: 50
   itunes:
     products:
 

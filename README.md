@@ -35,7 +35,7 @@ require 'openssl'
 
 json = File.read(receipt_json_path)
 key = OpenSSL::PKey::RSA.new(private_key)
-sign = key.sign(OpenSSL::Digest::SHA1.new, json).gsub(/(\r\n|\r|\n)/, '')
+sign = key.sign(OpenSSL::Digest::SHA1.new, json.gsub(/(\r\n|\r|\n)/, ''))
 File.write(path, Base64.encode64(sign))
 ```
 

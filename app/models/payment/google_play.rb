@@ -39,6 +39,7 @@ class Payment
     def verify_receipt!(signature)
       transaction do
         raise ReceiptInvalid unless valid_receipt?(signature)
+        add_product
         save_valid_receipt!
       end
     rescue ReceiptInvalid
@@ -47,6 +48,14 @@ class Payment
     end
 
     private
+
+    def add_product
+      transaction do
+        product = IAP::Config.google_play.products[product_id]
+        raise ReceiptInvalid if product.blank?
+        user.increment(:stone, product['quantity']).save!
+      end
+    end
 
     def valid_receipt?(signature)
       receipt_data = JSON.parse(receipt)
