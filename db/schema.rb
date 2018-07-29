@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_29_055228) do
+ActiveRecord::Schema.define(version: 2018_07_29_083602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,12 @@ ActiveRecord::Schema.define(version: 2018_07_29_055228) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "order", default: 0, null: false
+  end
+
+  create_table "characters", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "dialogs", force: :cascade do |t|
@@ -126,6 +132,16 @@ ActiveRecord::Schema.define(version: 2018_07_29_055228) do
     t.index ["chapter_id"], name: "index_stories_on_chapter_id"
   end
 
+  create_table "user_character_replationships", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "character_id"
+    t.integer "favorability", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_user_character_replationships_on_character_id"
+    t.index ["user_id"], name: "index_user_character_replationships_on_user_id"
+  end
+
   create_table "user_missions", force: :cascade do |t|
     t.bigint "user_id"
     t.integer "mission_id"
@@ -165,4 +181,6 @@ ActiveRecord::Schema.define(version: 2018_07_29_055228) do
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
   add_foreign_key "payments", "users"
   add_foreign_key "stories", "chapters"
+  add_foreign_key "user_character_replationships", "characters"
+  add_foreign_key "user_character_replationships", "users"
 end
