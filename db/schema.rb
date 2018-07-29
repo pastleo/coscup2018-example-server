@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_29_053235) do
+ActiveRecord::Schema.define(version: 2018_07_29_053838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(version: 2018_07_29_053235) do
     t.integer "order", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "gacha_groups", force: :cascade do |t|
+    t.integer "weight", default: 1
+    t.bigint "gacha_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gacha_id"], name: "index_gacha_groups_on_gacha_id"
   end
 
   create_table "gachas", force: :cascade do |t|
@@ -137,6 +145,7 @@ ActiveRecord::Schema.define(version: 2018_07_29_053235) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "gacha_groups", "gachas"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
