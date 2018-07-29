@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_29_053838) do
+ActiveRecord::Schema.define(version: 2018_07_29_055228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,18 @@ ActiveRecord::Schema.define(version: 2018_07_29_053838) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["gacha_id"], name: "index_gacha_groups_on_gacha_id"
+  end
+
+  create_table "gacha_items", force: :cascade do |t|
+    t.string "rewardable_type"
+    t.bigint "rewardable_id"
+    t.bigint "gacha_group_id"
+    t.integer "weight", default: 1
+    t.integer "amount", default: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gacha_group_id"], name: "index_gacha_items_on_gacha_group_id"
+    t.index ["rewardable_type", "rewardable_id"], name: "index_gacha_items_on_rewardable_type_and_rewardable_id"
   end
 
   create_table "gachas", force: :cascade do |t|
@@ -146,6 +158,7 @@ ActiveRecord::Schema.define(version: 2018_07_29_053838) do
   end
 
   add_foreign_key "gacha_groups", "gachas"
+  add_foreign_key "gacha_items", "gacha_groups"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
