@@ -4,6 +4,5 @@ require 'rails_helper'
 
 RSpec.describe Gacha, type: :model do
   it { should validate_presence_of(:name) }
-
-  it { should have_many(:gacha_groups) }
+  it { should have_many(:groups) }
 end

@@ -2,5 +2,6 @@
 
 class GachaItem < ApplicationRecord
   belongs_to :rewardable, polymorphic: true
-  belongs_to :gacha_group
+  belongs_to :group, class_name: 'GachaGroup', foreign_key: :gacha_group_id,
+                     inverse_of: :items
 end
