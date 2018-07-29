@@ -26,6 +26,10 @@ Rails.application.routes.draw do
         resources :payments, only: [:create]
       end
 
+      resources :gachas, only: [:index] do
+        post :draw
+      end
+
       resources :chapters, only: [:index] do
         resources :stories, only: [:index], concerns: :can_start
       end

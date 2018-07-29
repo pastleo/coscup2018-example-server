@@ -5,6 +5,8 @@ class Gacha < ApplicationRecord
 
   validates :name, presence: true
 
+  scope :opened, -> { where(opened: true) }
+
   def draw
     lottery = Lottery.new(groups)
     group = lottery.draw

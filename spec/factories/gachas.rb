@@ -3,5 +3,9 @@
 FactoryBot.define do
   factory :gacha do
     name { Faker::Name.name }
+
+    trait :opened do
+      opened true
+    end
   end
 end
