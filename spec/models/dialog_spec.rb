@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Dialog, type: :model do
+  it { should belong_to(:mission) }
+  it { should belong_to(:character) }
   it { should validate_presence_of(:script) }
   it do
     should validate_uniqueness_of(:order)

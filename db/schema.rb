@@ -35,9 +35,9 @@ ActiveRecord::Schema.define(version: 2018_08_01_031649) do
     t.integer "order", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "characters_id"
-    t.integer "character_expression"
-    t.index ["characters_id"], name: "index_dialogs_on_characters_id"
+    t.bigint "character_id"
+    t.integer "character_expression", default: 0
+    t.index ["character_id"], name: "index_dialogs_on_character_id"
   end
 
   create_table "gacha_groups", force: :cascade do |t|
