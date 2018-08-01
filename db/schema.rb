@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_29_083602) do
+ActiveRecord::Schema.define(version: 2018_08_01_031649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,9 @@ ActiveRecord::Schema.define(version: 2018_07_29_083602) do
     t.integer "order", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "character_id"
+    t.integer "character_expression", default: 0
+    t.index ["character_id"], name: "index_dialogs_on_character_id"
   end
 
   create_table "gacha_groups", force: :cascade do |t|
