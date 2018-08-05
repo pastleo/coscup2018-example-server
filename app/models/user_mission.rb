@@ -21,7 +21,7 @@ class UserMission < ApplicationRecord
         dialog
       else
         update(completed: true)
-        self
+        nil
       end
     end
   end

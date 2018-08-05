@@ -43,17 +43,6 @@ RSpec.describe 'Api::V1::Missions', type: :request do
       end
 
       it_behaves_like 'valid response'
-
-      it 'returns current mission' do
-        json = JSON.parse(response.body)
-        hash = JSON.parse(serialized_json(mission.reload))
-        expect(json).to match(hash)
-      end
-
-      it 'should be completed' do
-        json = JSON.parse(response.body)
-        expect(json['completed']).to be_truthy
-      end
     end
   end
 
