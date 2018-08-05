@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       resources :users, only: [:create]
 
       namespace :missions do
+        get :current
         post :next
         post :cancel
       end

@@ -3,10 +3,19 @@
 module Api
   module V1
     class MissionsController < Api::V1::BaseController
+      def current
+        # TODO: Should return mission
+        render json: current_user
+          .current_mission
+          &.mission
+          &.dialogs
+          &.first
+      end
+
       def next
         render json: current_user
           .current_mission
-          .next
+          &.next
       end
 
       def cancel
