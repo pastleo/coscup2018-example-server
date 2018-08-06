@@ -24,6 +24,7 @@ gem 'doorkeeper-jwt'
 gem 'active_model_serializers', '~> 0.10'
 
 # Utilities
+gem 'activerecord-import'
 gem 'oj'
 gem 'settingslogic'
 

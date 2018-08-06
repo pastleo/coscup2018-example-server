@@ -31,3 +31,5 @@
 config/iap.*.yml
 
 coverage
+
+db/fixtures
