@@ -3,19 +3,20 @@
 require_relative '../lib/subdomain_constraint'
 
 Rails.application.routes.draw do
-  use_doorkeeper
-  devise_for :users
+  #use_doorkeeper
+  #devise_for :users
 
   concern :can_start do
     post :start, on: :member
   end
 
   # TODO: Add subdomain constraint for production
-  namespace :api, path: '/', defaults: { format: :json }, constraints: SubdomainConstraint.new('api') do
+  namespace :api, path: '/', defaults: { format: :json } do
     namespace :v1 do
       resource :version, only: [:show]
 
       resources :users, only: [:create]
+      post 'session' => 'users#session'
 
       namespace :missions do
         get :current

@@ -33,3 +33,6 @@ config/iap.*.yml
 coverage
 
 db/fixtures
+
+config/firebase-jwt-creator.json
+config/firebase.json
