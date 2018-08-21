@@ -15,8 +15,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resource :version, only: [:show]
 
-      resources :users, only: [:create]
-      post 'session' => 'users#session'
+      match 'users' => 'users#create', via: [:post, :options]
+      match 'session' => 'users#session', via: [:post, :options]
 
       namespace :missions do
         get :current
