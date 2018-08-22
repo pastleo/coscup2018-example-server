@@ -6,6 +6,16 @@ Hime Server [![pipeline status](https://git.frost.tw/BasalticStudio/Hime/hime-se
 * Ruby 2.5.1
 * PostgreSQL
 
+## Firebase config
+
+```shell=
+cp config/{firebase-jwt-creator.json.sample => firebase-jwt-creator.json}
+# visit https://console.firebase.google.com/project/[project-id]/settings/serviceaccounts/adminsdk
+
+cp config/{firebase.json.sample => firebase.json}
+# visit https://console.firebase.google.com/project/[project-id]/settings/general/
+```
+
 ## Development
 
 For client development, we need to modify `/etc/hosts` to define the hostname.
